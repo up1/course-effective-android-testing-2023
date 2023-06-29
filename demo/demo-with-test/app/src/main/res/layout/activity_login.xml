@@ -31,7 +31,7 @@
             android:inputType="textEmailAddress"
             android:imeOptions="actionNext"
             android:hint="@string/email"
-            android:text="Sincere@april.biz"
+            android:text=""
             android:autofillHints="" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:inputType="textPassword"
             android:imeOptions="actionDone"
             android:hint="@string/password"
-            android:text="CorrectPassword123456"
+            android:text=""
             android:autofillHints="" />
 
         <Button
