@@ -20,6 +20,7 @@ class UserLoginCallback(private val loginView: LoginView) : Callback<List<User>>
     }
 
     override fun onFailure(call: Call<List<User>>, t: Throwable) {
+        t.printStackTrace()
         loginView.dismissLoading()
         loginView.showErrorDialog("Error occurred in Login")
     }
