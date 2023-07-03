@@ -1,6 +1,6 @@
 apply plugin: 'jacoco'
 
-tasks.create(name: "testCoverageReport", type: JacocoReport, dependsOn: ["test", "createDebugCoverageReport", "connectedProdDebugAndroidTest"]) {
+tasks.create(name: "testCoverageReport", type: JacocoReport, dependsOn: ["test", "createDebugCoverageReport"]) {
     group = "Verification" // existing group containing tasks for generating linting reports etc.
     description = "Generate Jacoco coverage reports for the 'local' debug build."
 
@@ -14,12 +14,12 @@ tasks.create(name: "testCoverageReport", type: JacocoReport, dependsOn: ["test",
     // Execution data generated when running the tests against classes instrumented by the JaCoCo agent.
     executionData.from = fileTree(dir: "$buildDir", includes: [
             "outputs/unit_test_code_coverage/debugUnitTest/*.exec",
-            "outputs/code-coverage/debugAndroidTest/connected/*coverage.ec"
+            "outputs/code_coverage/debugAndroidTest/connected/*/coverage.ec"
     ])
 
     // Compiled Kotlin class files are written into build-variant-specific subdirectories of 'build/tmp/kotlin-classes'.
     // JaCoCo execution data is a record of the (offsets of?) executed bytecode instructions which are looked up in the class files.
-    classDirectories.from = "${project.buildDir}/tmp/kotlin-classes/prodDebug"
+    classDirectories.from = "${project.buildDir}/tmp/kotlin-classes/debug"
 
     // To produce an accurate report, the bytecode is mapped back to the original source code.
     sourceDirectories.from = "${project.projectDir}/src/main/java"
