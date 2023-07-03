@@ -17,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+        testInstrumentationRunnerArguments useTestStorageService: 'true'
     }
 
     buildTypes {
@@ -57,6 +59,13 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+        unitTests.returnDefaultValues = true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 }
 
@@ -80,4 +89,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.nanohttpd:nanohttpd:2.1.1'
+
+    androidTestUtil 'androidx.test.services:test-services:1.4.2'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
 }
